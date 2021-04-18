@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Container, List } from 'semantic-ui-react';
 import { Fueling } from '../models/fueling';
 import NavBar from './NavBar';
+import FuelingDashboard from '../../features/fuelings/dashboard/FuelingDashboard';
 
 
 function App() {
@@ -18,13 +19,7 @@ function App() {
     <>
       <NavBar />
       <Container style={{marginTop: '7em'}}>
-       <List> 
-          {fuelings.map(fueling => (
-            <List.Item key={fueling.id}>
-              {fueling.sroNumber}
-            </List.Item>
-          ))}
-        </List>
+        <FuelingDashboard fuelings={fuelings} />
       </Container>
         
     </>
