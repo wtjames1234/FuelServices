@@ -17,7 +17,9 @@ export default function FuelingList({fuelings}: Props) {
                             <Item.Meta>{fueling.date}</Item.Meta>
                             <Item.Description>
                                 <div>{fueling.description}</div>
-                                <div>{fueling.area}, {fueling.requestor} </div>     {/*you need to add other fueling properties to these components somehow*/}
+                                <div>{fueling.area}, {fueling.requestor} </div>
+                                <div>{fueling.hours}, {fueling.odometer} </div>
+                                <div>{fueling.gallons} </div>
                             </Item.Description>
                             <Item.Extra>
                                 <Button floated='right' content='view' color='blue' />
