@@ -1,30 +1,31 @@
 import React from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Button, ButtonGroup, Card, Icon, Image } from 'semantic-ui-react';
 import { Fueling } from '../../../app/models/fueling';
 
 interface Props {
-    fueling: Fueling
+    fueling: Fueling;
+    cancelSelectFueling: () => void;
 }
 
-export default function FuelingDetails({fueling}: Props) {
+export default function FuelingDetails({fueling, cancelSelectFueling}: Props) {
     return (
-        <Card>
-            <Image src={`/assets/categoryImages/${fueling.description}.jpg`} /> {/*you need to find images for what you want to display here*/}
+        <Card fluid>
+            <Image src={`/assets/categoryImages/${fueling.description}.png`} /> 
             <Card.Content>
-                <Card.Header>Matthew</Card.Header>
+                <Card.Header>{fueling.sroNumber}</Card.Header>
                 <Card.Meta>
-                    <span className='date'>Joined in 2015</span>
+                    <span>{fueling.date}</span>
                 </Card.Meta>
                 <Card.Description>
-                    Matthew is a musician living in Nashville.
-      </Card.Description>
-    </Card.Content>
-    <Card.Content extra>
-      <a>
-        <Icon name='user' />
-        22 Friends
-      </a>
-    </Card.Content>
-  </Card>
+                    {fueling.description}
+                </Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+                <Button.Group widths='2'>
+                    <Button basic color='blue' content='Edit' />
+                    <Button onClick={cancelSelectFueling} basic color='grey' content='Cancel' />
+                </Button.Group>
+            </Card.Content>
+        </Card>
     )
 }

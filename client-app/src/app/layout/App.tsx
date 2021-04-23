@@ -8,6 +8,7 @@ import FuelingDashboard from '../../features/fuelings/dashboard/FuelingDashboard
 
 function App() {
   const [fuelings, setFuelings] = useState<Fueling[]>([]);
+  const [selectedFueling, setSelectedFueling] = useState<Fueling | undefined>(undefined);
 
   useEffect(() => {
     axios.get<Fueling[]>('http://localhost:5000/api/fuelings').then(response => {
@@ -15,11 +16,24 @@ function App() {
     })
   }, [])
 
+  function handleSelectFueling(id: string) {
+    setSelectedFueling(fuelings.find(x => x.id === id));
+  }
+
+  function handleCancelSelectFueling() {
+    setSelectedFueling(undefined);
+  }
+
   return (
     <>
       <NavBar />
       <Container style={{marginTop: '7em'}}>
-        <FuelingDashboard fuelings={fuelings} />
+        <FuelingDashboard 
+          fuelings={fuelings}
+          selectedFueling={selectedFueling}
+          selectFueling={handleSelectFueling}
+          cancelSelectFueling={handleCancelSelectFueling}  
+        />
       </Container>
         
     </>

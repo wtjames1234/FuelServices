@@ -4,9 +4,10 @@ import { Fueling } from '../../../app/models/fueling';
 
 interface Props {
     fuelings: Fueling[];
+    selectFueling: (id: string) => void;
 }
 
-export default function FuelingList({fuelings}: Props) {
+export default function FuelingList({fuelings, selectFueling}: Props) {
     return (
         <Segment>
             <Item.Group divided>
@@ -22,7 +23,7 @@ export default function FuelingList({fuelings}: Props) {
                                 <div>{fueling.gallons} </div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button floated='right' content='view' color='blue' />
+                                <Button onClick={() => selectFueling(fueling.id)} floated='right' content='view' color='blue' />
                                 <Label basic content={fueling.type} />
                             </Item.Extra>
                         </Item.Content>
