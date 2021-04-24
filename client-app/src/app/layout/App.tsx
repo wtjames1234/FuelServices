@@ -9,6 +9,7 @@ import FuelingDashboard from '../../features/fuelings/dashboard/FuelingDashboard
 function App() {
   const [fuelings, setFuelings] = useState<Fueling[]>([]);
   const [selectedFueling, setSelectedFueling] = useState<Fueling | undefined>(undefined);
+  const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
     axios.get<Fueling[]>('http://localhost:5000/api/fuelings').then(response => {
@@ -24,15 +25,27 @@ function App() {
     setSelectedFueling(undefined);
   }
 
+  function handleFormOpen(id?: string) {
+    id ? handleSelectFueling(id) : handleCancelSelectFueling();
+    setEditMode(true);
+  }
+
+  function handleFormClose() {
+    setEditMode(false);
+  }
+
   return (
     <>
-      <NavBar />
+      <NavBar openForm={handleFormOpen} />
       <Container style={{marginTop: '7em'}}>
         <FuelingDashboard 
           fuelings={fuelings}
           selectedFueling={selectedFueling}
           selectFueling={handleSelectFueling}
-          cancelSelectFueling={handleCancelSelectFueling}  
+          cancelSelectFueling={handleCancelSelectFueling}
+          editMode={editMode}
+          openForm={handleFormOpen}
+          closeForm={handleFormClose}  
         />
       </Container>
         

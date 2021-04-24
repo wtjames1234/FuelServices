@@ -10,9 +10,12 @@ interface Props {
     selectedFueling: Fueling | undefined;
     selectFueling: (id: string) => void;
     cancelSelectFueling: () => void;
+    editMode: boolean;
+    openForm: (id: string) => void;
+    closeForm: () => void;
 }
 
-export default function FuelingDashboard({fuelings, selectedFueling, selectFueling, cancelSelectFueling}: Props) {
+export default function FuelingDashboard({fuelings, selectedFueling, selectFueling, cancelSelectFueling, editMode, openForm, closeForm}: Props) {
     return(
         <Grid>
             <Grid.Column width='10'>
@@ -21,9 +24,14 @@ export default function FuelingDashboard({fuelings, selectedFueling, selectFueli
                 </List>
             </Grid.Column>
             <Grid.Column width='6'>
-                {selectedFueling &&
-                <FuelingDetails fueling={selectedFueling} cancelSelectFueling={cancelSelectFueling} />}
-                <FuelingForm />
+                {selectedFueling && !editMode &&
+                <FuelingDetails 
+                    fueling={selectedFueling} 
+                    cancelSelectFueling={cancelSelectFueling}
+                    openForm={openForm} 
+                />}
+                {editMode &&
+                <FuelingForm closeForm={closeForm} fueling={selectedFueling} />}
             </Grid.Column>
         </Grid>
     )

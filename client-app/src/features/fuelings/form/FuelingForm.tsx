@@ -1,7 +1,13 @@
 import React from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
+import { Fueling } from '../../../app/models/fueling';
 
-export default function FuelingForm() {
+interface Props {
+    fueling: Fueling | undefined;
+    closeForm: () => void;
+}
+
+export default function FuelingForm({fueling, closeForm}: Props) {
     return (
         <Segment clearing>
             <Form>
@@ -15,7 +21,7 @@ export default function FuelingForm() {
                 <Form.Input placeholder='Odometer' />
                 <Form.Input placeholder='Gallons' />
                 <Button floated='right' positive type='submit' content='Submit' />
-                <Button floated='right' type='button' content='Cancel' />
+                <Button onClick={closeForm} floated='right' type='button' content='Cancel' />
             </Form>
         </Segment>
     )
