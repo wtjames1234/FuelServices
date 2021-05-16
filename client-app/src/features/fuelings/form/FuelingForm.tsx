@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
 import { Fueling } from '../../../app/models/fueling';
 
@@ -7,7 +7,27 @@ interface Props {
     closeForm: () => void;
 }
 
-export default function FuelingForm({fueling, closeForm}: Props) {
+export default function FuelingForm({fueling: selectedFueling, closeForm}: Props) {
+
+    const initialState = selectedFueling ?? {
+        id: '',
+        sroNumber: '',
+        description: '',
+        type: '',
+        date: '',
+        area: '',
+        requestor: '',
+        hours: '',
+        odometer: '',
+        gallons: ''
+    }
+
+    const [fueling, setFueling] = useState(initialState);
+
+    function handleSubmit() {
+        console.log(fueling);
+    }
+
     return (
         <Segment clearing>
             <Form>

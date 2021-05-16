@@ -10,10 +10,10 @@ export default function NavBar({openForm}: Props) {
         <Menu inverted fixed='top'>
             <Container>
                 <Menu.Item header>
-                    <img src="/assets/logo.png" alt="logo" style={{marginRight: '10px'}} />
+                    <img src="/assets/logo.png" alt="logo" style={{marginRight: '10px', width: '5em'}} />
                     FuelServices
                 </Menu.Item>
-                <Menu.Item name='Fuelings' />
+                <Menu.Item name='Fuel Deliveries' />
                 <Menu.Item>
                     <Button onClick={openForm} positive content='Create Fueling' />
                 </Menu.Item>
